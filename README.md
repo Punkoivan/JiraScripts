@@ -15,4 +15,5 @@ In debug mode script writes to a standard log file (%JIR\_HOME/logs/catalina.out
   "issue %ISSUE-ID has been deleted"
 * in case of failure:
   "There is an error while deleting %ISSUE-ID - User must have Delete issue permission in project!"
+
 Be aware! Log is created for every issue - on a really large instance might be root cause of freezing!
