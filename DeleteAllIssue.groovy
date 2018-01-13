@@ -38,7 +38,7 @@ def getIssueByProject(project) {
         return issues
     }
 
-def void DeleteIssues(List issues, String user) {
+def void DeleteIssues(List issues, String user, boolean debug=false) {
     '''
     Method try to delete all issues (%issues).
     If there are any errors while deleting an issue 
@@ -48,9 +48,12 @@ def void DeleteIssues(List issues, String user) {
     Parameters: 
         List of issues id (%issues),
         String user with 'Delete issue' permission (%user)
+        Boolean debug false by default, set true for debug mode.
     '''
     Logger logger = Logger.getLogger("")
-    logger.setLevel(Level.DEBUG)
+    if (debug) {
+        logger.setLevel(Level.DEBUG)
+    }
     IssueService issueService = ComponentAccessor.getIssueService()
     def userManager = ComponentAccessor.getUserManager()
     def userDelete = userManager.getUserByName(user)
@@ -64,7 +67,7 @@ def void DeleteIssues(List issues, String user) {
             validationResult = issueService.validateDelete(userDelete, issue_id)
             if (validationResult.errorCollection.hasAnyErrors()) {
                 def error = validationResult.getErrorCollection()
-                logger.debug("There is an error while deleting issue  " + error)
+                logger.debug("There is an error while deleting ${issue_string}  " + error)
             }
             else {
                issueService.delete(userDelete, validationResult)
@@ -80,11 +83,10 @@ def void DeleteIssues(List issues, String user) {
     Logger logger = Logger.getLogger("")
     logger.setLevel(Level.DEBUG)
 
-def main() {
+def main(boolean debug=false) {
     for (project in agetAllProjects()) {
-        issueToDelete = getIssueByProject(project)
-        logger.debug(issueToDelete)
-        DeleteIssues(issueToDelete)
+        issueToDelete = getIssueByProject(project, debug)
+        DeleteIssues(issueToDelete, debug)
     }
 }
 
