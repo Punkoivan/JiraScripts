@@ -22,6 +22,7 @@ In debug mode script writes to a standard log file (%JIR\_HOME/logs/catalina.out
 Be aware! Log is created for every issue - on a really large instance might be root cause of freezing!
 
 **DeleteProjectIssues**
+
 Almost the same as DeleteAllIssues
 
 Script does exactly what it name says - delete issues for given project in Jira.
