@@ -51,6 +51,7 @@ def void DeleteIssues(List issues, String user, boolean debug=false) {
         Boolean debug false by default, set true for debug mode.
     '''
     Logger logger = Logger.getLogger("")
+    logger.setLevel(Level.INFO)
     if (debug) {
         logger.setLevel(Level.DEBUG)
     }
@@ -86,7 +87,7 @@ def void DeleteIssues(List issues, String user, boolean debug=false) {
 def main(boolean debug=false) {
     for (project in agetAllProjects()) {
         issueToDelete = getIssueByProject(project, debug)
-        DeleteIssues(issueToDelete, debug)
+        DeleteIssues(issueToDelete, "YourUsername!", debug)
     }
 }
 
