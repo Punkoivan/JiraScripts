@@ -2,10 +2,8 @@ import org.ofbiz.core.entity.GenericValue
 import com.atlassian.jira.component.ComponentAccessor
 import com.atlassian.jira.issue.Issue
 import com.atlassian.jira.issue.IssueManager
-import com.atlassian.jira.project.Project
 import com.atlassian.jira.project.ProjectManager
 import com.atlassian.jira.bc.issue.IssueService
-import com.atlassian.jira.component.ComponentAccessor
 import org.apache.log4j.Logger
 import org.apache.log4j.Level
 
