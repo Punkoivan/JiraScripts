@@ -38,3 +38,10 @@ In debug mode script writes to a standard log file (%JIR\_HOME/logs/catalina.out
   "There is an error while deleting %ISSUE-ID - User must have Delete issue permission in project!"
 
 Be aware! Log entry is created for every issue - on a really large instance might be root cause of freezing!
+**getHeap**
+A small script that allows you to get useful information about heap current usage.
+Usecases:
+1. Set up a scheduled tasks and add notification about high usage via mail or get ticket automatically created in queue which responsible for Jira instance.
+2. Set up a custom REST Endpoint and return only usage. Here you go with monitoring system - just fetch data from URL with Nagios/Zabbix/Crontab/etc and set yours tresholds.
+Please note that for DataCenter edition you should set different endpoints - I did *not* test it but should works.
+Bonus - you don't need JDK for this!
