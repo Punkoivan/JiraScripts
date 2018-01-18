@@ -45,3 +45,6 @@ Usecases:
 2. Set up a custom REST Endpoint and return only usage. Here you go with monitoring system - just fetch data from URL with Nagios/Zabbix/Crontab/etc and set yours tresholds.
 Please note that for DataCenter edition you should set different endpoints - I did *not* test it but should works.
 Bonus - you don't need JDK for this!
+**getClusterManager**
+Returns ClusterManager instance. [Atlassian Docs](https://docs.atlassian.com/software/jira/docs/api/7.5.0/com/atlassian/jira/cluster/DefaultClusterManager.html)
+Allows us to fetch info about each nodes in cluster.
