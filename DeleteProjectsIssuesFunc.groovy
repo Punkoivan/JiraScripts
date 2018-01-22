@@ -1,13 +1,9 @@
-import org.ofbiz.core.entity.GenericValue
 import com.atlassian.jira.component.ComponentAccessor
-import com.atlassian.jira.issue.Issue
-import com.atlassian.jira.issue.IssueManager
-import com.atlassian.jira.bc.issue.IssueService
 import com.atlassian.jira.project.ProjectManager
 import org.apache.log4j.Logger
 import org.apache.log4j.Level
 
-def getIssueByProject(projectKey, boolean debug=false, boolean resetCounter=true) {
+def void DeleteIssuesByProject(projectKey, boolean debug=false, boolean resetCounter=true) {
     '''
     Method return a List with all issues id
     in in given project(%project)
@@ -15,18 +11,21 @@ def getIssueByProject(projectKey, boolean debug=false, boolean resetCounter=true
         String projectKey (not case sensivity)
         boolean debug - turn on debug, by dedault toruned of
         boolean resetCounter - reset issue counter or not, by default is true
-    Return: List of string issues
     '''
     Logger logger = Logger.getLogger("")
     logger.setLevel(Level.INFO)
     if (debug) {
         logger.setLevel(Level.DEBUG)
     }
+    ProjectManager projectManager = ComponentAccessor.getProjectManager()
     def project = projectManager.getProjectByCurrentKeyIgnoreCase(projectKey)
     try {
-        removeProjectIssues(project)
-        logger.debug("Issue for the ${project has been deleted}")
-    {
+        projectManager.removeProjectIssues(project)
+        logger.debug("Issue for the ${project} has been deleted}")
+        if (resetCounter) {
+            projectManager.setCurrentCounterForProject(project, 0)
+        }
+    }
     catch(e) {
         logger.debug(e)
     {
